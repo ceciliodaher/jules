@@ -15,7 +15,7 @@
             <h2>Informações Contratuais</h2>
             <div>
                 <label for="valorPrincipal">Valor Principal (R$):</label>
-                <input type="number" id="valorPrincipal" name="valorPrincipal">
+                <input type="text" id="valorPrincipal" name="valorPrincipal" placeholder="1.234,56">
             </div>
             <div>
                 <label for="dataInicio">Data Início:</label>
@@ -23,15 +23,56 @@
             </div>
             <div>
                 <label for="taxaSpreadMensal">Taxa Spread Mensal (%):</label>
-                <input type="number" id="taxaSpreadMensal" name="taxaSpreadMensal" placeholder="0.0045">
+                <input type="text" id="taxaSpreadMensal" name="taxaSpreadMensal" placeholder="0,45">
+                <small id="taxaSpreadMensalHelp">Ex: 0,45 para 0,45% ao mês.</small>
+            </div>
+            <div>
+                <label for="numeroParcelas">Número de Parcelas:</label>
+                <input type="number" id="numeroParcelas" name="numeroParcelas" min="1" value="55">
+            </div>
+            <div>
+                <label for="mesesCarencia">Meses de Carência (sem amortização de principal):</label>
+                <input type="number" id="mesesCarencia" name="mesesCarencia" min="0" value="0">
+            </div>
+        </section>
+
+        <section id="tipoAmortizacaoSection">
+            <fieldset>
+                <legend>Tipo de Amortização do Principal</legend>
+                <div>
+                    <input type="radio" id="tipoAmortizacaoFixa" name="tipoAmortizacao" value="fixa" checked>
+                    <label for="tipoAmortizacaoFixa">Percentual Fixo Mensal sobre Saldo Devedor Inicial</label>
+                </div>
+                <div>
+                    <input type="radio" id="tipoAmortizacaoVariavel" name="tipoAmortizacao" value="variavel">
+                    <label for="tipoAmortizacaoVariavel">Percentuais Variáveis Mensais sobre Saldo Devedor Inicial</label>
+                </div>
+                 <div>
+                    <input type="radio" id="tipoAmortizacaoSac" name="tipoAmortizacao" value="sac">
+                    <label for="tipoAmortizacaoSac">Tabela SAC (Amortização Constante)</label>
+                </div>
+                <div>
+                    <input type="radio" id="tipoAmortizacaoPrice" name="tipoAmortizacao" value="price">
+                    <label for="tipoAmortizacaoPrice">Tabela Price (Parcelas Fixas)</label>
+                </div>
+            </fieldset>
+            <div id="containerAmortizacaoFixaCampos">
+                 <label for="percentualAmortizacaoFixa">Percentual de Amortização Mensal Fixo (%):</label>
+                 <input type="text" id="percentualAmortizacaoFixa" name="percentualAmortizacaoFixa" placeholder="1,8181">
+                 <small>Ex: 1,8181% para quitar em 55 parcelas (100/55). Deixe em branco para amortização apenas na última parcela durante a carência.</small>
+            </div>
+            <div id="containerAmortizacaoVariavelCampos" style="display: none;">
+                <p>Os campos para percentuais variáveis de amortização aparecerão aqui se esta opção for selecionada. Defina o Número de Parcelas primeiro.</p>
+                <!-- JS will populate this based on numeroParcelas -->
             </div>
         </section>
 
         <section id="parametrosProjecao">
-            <h2>Parâmetros de Projeção</h2>
-            <div>
-                <label for="taxaCdiMensalProjecao">Taxa CDI mensal para projeção (%):</label>
-                <input type="number" id="taxaCdiMensalProjecao" name="taxaCdiMensalProjecao" placeholder="0.90">
+            <h2>Parâmetros de Projeção de CDI</h2>
+            <p id="cdiFutureInstruction">Informe as taxas CDI futuras no formato 0,90 para 0,90%.</p>
+            <div id="containerCdiFuturoCampos">
+                <p>Os campos para CDI futuro aparecerão aqui com base na Data Início e Nº de Parcelas. As datas passadas usarão o histórico de CDI conhecido.</p>
+                <!-- JS will populate this based on dataInicio and numeroParcelas -->
             </div>
         </section>
 
@@ -47,14 +88,16 @@
                     <tr>
                         <th>Parcela</th>
                         <th>Vencimento</th>
-                        <th>% Amort.</th>
-                        <th>CDI (%)</th>
-                        <th>Taxa Total (%)</th>
-                        <th>Saldo Inicial</th>
-                        <th>Juros</th>
-                        <th>Amortização</th>
-                        <th>Parcela Total</th>
-                        <th>Saldo Final</th>
+                        <th>Dias Úteis</th>
+                        <th>% Amort. Principal</th>
+                        <th>CDI Hist/Proj. (% a.m.)</th>
+                        <th>Spread Contratual (% a.m.)</th>
+                        <th>Taxa Final Juros (% a.m.)</th>
+                        <th>Saldo Devedor Inicial (R$)</th>
+                        <th>Juros (R$)</th>
+                        <th>Amortização Principal (R$)</th>
+                        <th>Parcela (Juros + Amort.) (R$)</th>
+                        <th>Saldo Devedor Final (R$)</th>
                     </tr>
                 </thead>
                 <tbody id="corpoTabelaAmortizacao">

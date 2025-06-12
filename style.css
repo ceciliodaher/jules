@@ -42,16 +42,50 @@ section {
     background-color: #f9f9f9;
 }
 
-section h2 {
+section h2, fieldset legend {
     margin-top: 0;
     color: #004080;
     border-bottom: 2px solid #004080;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    font-size: 1.4rem;
 }
 
-/* Input field and label styling */
-div > label {
+/* Fieldset and Legend styling */
+fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Spacing for content below fieldset */
+}
+
+fieldset legend {
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-bottom-width: 0; /* Remove double border if section h2 style is inherited */
+    margin-bottom: 15px; /* Space between legend and first radio button */
+}
+
+/* Radio button and label styling */
+#tipoAmortizacaoSection div {
+    margin-bottom: 10px; /* Spacing between radio options */
+}
+
+#tipoAmortizacaoSection input[type="radio"] {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+#tipoAmortizacaoSection label { /* Labels for radio buttons */
+    font-weight: normal; /* Override general label bolding if needed */
+    color: #333;
+    vertical-align: middle;
+}
+
+
+/* Input field and label styling (general) */
+div > label, section > div > label { /* Target labels directly inside divs, or section > div */
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
@@ -59,10 +93,11 @@ div > label {
 }
 
 input[type="number"],
-input[type="date"] {
+input[type="date"],
+input[type="text"] { /* Apply to new text inputs as well */
     width: calc(100% - 22px); /* Full width minus padding and border */
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 5px; /* Reduced margin to accommodate helper text */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box; /* Important for width calculation */
@@ -70,11 +105,57 @@ input[type="date"] {
 }
 
 input[type="number"]:focus,
-input[type="date"]:focus {
+input[type="date"]:focus,
+input[type="text"]:focus {
     border-color: #004080;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 64, 128, 0.3);
 }
+
+/* Helper text styling */
+small, .helper-text {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: -5px; /* Pull up slightly if input margin-bottom is small */
+    margin-bottom: 10px;
+}
+
+/* Styling for containers of dynamically generated inputs */
+#containerAmortizacaoVariavelCampos,
+#containerCdiFuturoCampos,
+#containerAmortizacaoFixaCampos {
+    padding: 15px;
+    border: 1px dashed #ccc; /* Dashed border to indicate dynamic content area */
+    border-radius: 4px;
+    margin-top: 15px;
+    background-color: #fdfdfd;
+}
+
+#containerAmortizacaoVariavelCampos p,
+#containerCdiFuturoCampos p { /* Placeholder paragraph styling */
+    font-style: italic;
+    color: #777;
+    text-align: center;
+}
+
+/* Initial visibility for dynamic containers */
+#containerAmortizacaoVariavelCampos {
+    display: none; /* Hidden by default, JS will show it */
+}
+/* #containerAmortizacaoFixaCampos is visible by default */
+
+
+/* Instructional text */
+#cdiFutureInstruction {
+    font-size: 0.9rem;
+    color: #555;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
 
 /* Grouping input fields for better layout */
 section > div {
@@ -122,15 +203,19 @@ section > div {
 #tabelaAmortizacao th,
 #tabelaAmortizacao td {
     border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-    font-size: 0.95rem;
+    padding: 10px; /* Increased padding slightly for more space */
+    text-align: left; /* Default left, numbers might be right-aligned by JS if needed */
+    font-size: 0.9rem; /* Slightly reduced for more columns */
+    white-space: nowrap; /* Prevent headers and some cell content from wrapping too soon */
 }
 
 #tabelaAmortizacao th {
     background-color: #004080;
     color: white;
     font-weight: bold;
+    position: sticky; /* Make headers sticky if table scrolls vertically, though not primary scroll here */
+    top: 0;
+    z-index: 1;
 }
 
 #tabelaAmortizacao tbody tr:nth-child(even) {
@@ -140,6 +225,16 @@ section > div {
 #tabelaAmortizacao tbody tr:hover {
     background-color: #e9ecef;
 }
+
+/* Specific column width suggestions (optional, can be tricky) */
+/* Example:
+#tabelaAmortizacao th:nth-child(1),  Parcela
+#tabelaAmortizacao td:nth-child(1) { min-width: 60px; }
+
+#tabelaAmortizacao th:nth-child(2),  Vencimento
+#tabelaAmortizacao td:nth-child(2) { min-width: 100px; }
+*/
+
 
 /* Summary display area styling */
 #resumoCalculo {
@@ -180,6 +275,10 @@ section > div {
         font-size: 1.5rem;
     }
 
+    section h2, fieldset legend {
+        font-size: 1.2rem;
+    }
+
     #botoesAcao button {
         padding: 10px 15px;
         font-size: 0.9rem;
@@ -189,14 +288,15 @@ section > div {
     }
 
     input[type="number"],
-    input[type="date"] {
+    input[type="date"],
+    input[type="text"] {
         font-size: 0.95rem;
     }
 
     #tabelaAmortizacao th,
     #tabelaAmortizacao td {
         padding: 8px;
-        font-size: 0.9rem;
+        font-size: 0.85rem; /* Further reduce for small screens with many columns */
     }
 }
 
@@ -207,7 +307,11 @@ section > div {
     header h1 {
         font-size: 1.3rem;
     }
-    section h2 {
-        font-size: 1.2rem;
+    section h2, fieldset legend {
+        font-size: 1.1rem;
+    }
+    #tabelaAmortizacao th,
+    #tabelaAmortizacao td {
+        font-size: 0.8rem; /* Smallest font for table */
     }
 }
