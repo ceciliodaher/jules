@@ -1,482 +1,213 @@
+/* Basic body styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font stack */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    background-color: #f0f2f5; /* Soft off-white/light gray */
-    padding-top: 20px;
-    padding-bottom: 20px;
-    line-height: 1.6; /* Added */
-}
-
-.container {
-    background-color: #ffffff; /* White container */
-    padding: 30px 40px;    /* More internal spacing */
-    border-radius: 12px;   /* More rounded corners */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
-    width: 80%;
-    max-width: 950px;    /* Slightly wider */
-    min-height: 600px;
-    display: flex;
-    flex-direction: column;
-}
-
-.screen {
-    display: none;
-    opacity: 0; /* Start fully transparent */
-    transition: opacity 0.5s ease-in-out; /* Fade transition */
-}
-
-.screen.active {
-    display: block;
-    opacity: 1; /* Fade in to full opacity */
-}
-
-h1 {
-    text-align: center;
-    color: #2c3e50;     /* Dark blue/charcoal */
-    font-size: 2.2em;   /* Increased */
-    font-weight: 600;   /* Added */
-    margin-bottom: 25px; /* Increased */
-}
-
-h2 { /* General h2, e.g., in results */
-    text-align: center;
-    color: #3498db;     /* Primary accent */
-    font-size: 1.6em;   /* Increased */
-    font-weight: 600;   /* Added */
-    margin-top: 30px;   /* Increased */
-    margin-bottom: 15px;
-    border-bottom: 2px solid #e0e0e0; /* Light border */
-    padding-bottom: 10px; /* Added */
-}
-
-#section-title { /* Questionnaire section title */
-    font-size: 1.8em;   /* Increased */
-    color: #1abc9c;     /* Teal accent */
-    font-weight: 500;   /* Added */
-    margin-bottom: 10px; /* Adjusted for illustration placeholder */
-    text-align: left;
-    border-bottom: none; /* Remove general h2 border */
-    padding-bottom: 0;  /* Remove general h2 padding */
-}
-
-
-.instructions {
-    background-color: #e9f7fd; /* Very light blue */
-    border-left: 5px solid #3498db; /* Primary accent border */
-    padding: 20px;           /* Increased */
-    margin-top: 15px; /* Space from illustration */
-    margin-bottom: 30px;      /* Increased */
-    border-radius: 8px;      /* Added */
-    font-size: 0.95em;
-    line-height: 1.6;
-}
-
-.instructions h2 {
-    color: #3498db;     /* Primary accent */
-    font-size: 1.3em;   /* Adjusted */
-    margin-top: 0;
-    text-align: left;
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 10px; /* Space after instructions title */
-}
-
-.instructions ol, .instructions ul {
-    padding-left: 20px;
-}
-
-.name-input {
-    margin-bottom: 30px; /* Increased spacing */
-    text-align: center;
-}
-
-.name-input label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500; /* Adjusted */
-    font-size: 1.1em;
-}
-
-.name-input input[type="text"] {
-    padding: 12px 15px; /* Increased */
-    border: 1px solid #ced4da; /* Light gray border */
-    border-radius: 8px;    /* More rounded */
-    width: 70%;
-    font-size: 1em;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Added */
-}
-.name-input input[type="text"]:focus {
-    border-color: #3498db; /* Primary accent */
-    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25); /* Added */
-}
-
-
-button {
-    padding: 12px 25px; /* Increased padding */
-    font-size: 1.05em;  /* Slightly larger font */
-    font-weight: 500;   /* Medium weight */
-    border-radius: 8px; /* More rounded */
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease; /* Added transform */
-    color: white; /* Default text color for buttons */
-}
-
-button:hover {
-    transform: translateY(-1px); /* Slight lift on hover */
-}
-
-#start-button,
-.navigation-buttons button,
-.action-buttons button { /* Default button styling for these groups */
-    background-color: #3498db; /* Primary accent */
-}
-
-#start-button:hover,
-.navigation-buttons button:hover,
-.action-buttons button:hover {
-    background-color: #2980b9; /* Darker primary accent */
-}
-
-#finish-button {
-    background-color: #2ecc71; /* Green for positive action */
-}
-#finish-button:hover {
-    background-color: #27ae60; /* Darker green */
-}
-
-#prev-button { /* Less prominent style for "Anterior" */
-    background-color: #95a5a6; /* Gray */
-}
-#prev-button:hover {
-    background-color: #7f8c8d; /* Darker gray */
-}
-
-
-#start-button { /* if specific overrides needed, though covered by group above */
-    display: block;
-    margin: 30px auto 0; /* Increased top margin */
-}
-
-#question-text {
-    font-size: 1.15em;    /* Adjusted */
-    line-height: 1.7;   /* Increased */
-    color: #34495e;     /* Dark blue/gray */
-    min-height: 80px;   /* Increased */
-    margin-bottom: 25px; /* Increased */
-    padding: 15px;      /* Added */
-    background-color: #fdfdfd; /* Very light off-white */
-    border-radius: 8px; /* Added */
-    border: 1px solid #eef; /* Light border */
-}
-
-.options {
-    margin: 25px 0; /* Increased */
-    text-align: center;
-}
-
-.options select {
-    padding: 12px 15px; /* Increased */
-    font-size: 1.1em;
-    border-radius: 8px; /* More rounded */
-    border: 1px solid #ced4da; /* Light gray border */
-    background-color: white; /* Ensure select is white */
-    min-width: 120px;   /* Added */
-}
-
-#current-section-questions-container {
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-.question-item {
-    padding: 20px;
-    margin-bottom: 25px;
-    background-color: #f9f9f9; /* Light background for each question item */
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-.question-item-text {
-    font-size: 1.1em; /* Ensure this is readable for long questions */
-    line-height: 1.6;
+    padding: 0;
+    background-color: #f4f4f4;
     color: #333;
-    margin-bottom: 15px;
-}
-.question-item-select {
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1em;
-    min-width: 100px;
-    /* display: block; // No longer a single select per question item */
-    /* margin-top: 5px; // No longer a single select per question item */
-}
-
-/* Styling for Radio Button Groups and Items */
-.answer-radio-group {
-    display: flex;
-    flex-direction: column; /* Stack them vertically */
-    margin-top: 10px;
-    align-items: flex-start; /* Align items to the start of the column */
-}
-
-.radio-option-container { /* Container for each radio + label pair */
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px; /* Space between options */
-}
-
-.answer-radio-group label {
-    display: flex;
-    align-items: center;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    width: auto;
-    min-width: 50px; /* Adjusted min-width for A, ?, B labels */
-    background-color: #fff;
-    margin-left: 5px; /* Space from the radio button if radio is visible */
-}
-
-.answer-radio-group input[type="radio"] {
-    margin-right: 0px; /* Adjust as needed, label has margin-left now */
-    accent-color: #3498db; /* Modern way to color the radio button itself */
-    /* Standard radio button size is usually sufficient, can be scaled with transform if needed */
-    width: 1.2em; /* Slightly larger radio */
-    height: 1.2em;
-    cursor: pointer;
-}
-
-/* Style for the label when its radio button is checked */
-.answer-radio-group input[type="radio"]:checked + label {
-    background-color: #e6f7ff; /* Light blue background for selected */
-    border-color: #3498db; /* Primary accent border for selected */
-    font-weight: 500;
-    color: #2980b9;
-}
-
-
-.navigation-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 25px; /* Increased */
-}
-
-/* Illustration Placeholder Styling */
-.illustration-placeholder {
-    width: 100%;
-    height: 100px;
-    background-color: #e9e9e9; /* Light gray placeholder */
-    border: 2px dashed #cccccc;
-    border-radius: 8px;
-    margin: 15px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9em;
-    color: #888;
-    text-align: center;
-    position: relative; /* Added */
-    overflow: hidden;   /* Added */
-}
-
-/* Remove old ::after content */
-.initial-illustration::after,
-.section-illustration::after,
-.results-illustration::after {
-    content: "";
-}
-
-/* Styling for .initial-illustration */
-.initial-illustration {
-    background-color: #e6f7ff; /* Very light, welcoming blue */
-    border-color: #ade8f4;   /* Soft blue border */
-}
-.initial-illustration::before {
-    content: "📝"; /* Pencil memo */
-    font-size: 40px;
-    color: #3498db; /* Primary accent color */
-    line-height: 1;
-}
-
-/* Styling for .section-illustration */
-.section-illustration {
-    background-color: #e0f2f1; /* Very light teal/green */
-    border-color: #a7d7c5;   /* Soft teal/green border */
-    height: 60px;            /* Adjusted height */
-    margin-bottom: 15px;     /* Adjusted margin */
-}
-.section-illustration::before {
-    content: "🧠"; /* Brain for thought */
-    font-size: 30px;
-    color: #1abc9c; /* Teal accent color */
-    line-height: 1;
-}
-
-/* Styling for .results-illustration */
-.results-illustration {
-    background-color: #e8f5e9; /* Very light, positive green */
-    border-color: #a5d6a7;   /* Soft green border */
-}
-.results-illustration::before {
-    content: "📊"; /* Bar chart for results */
-    font-size: 40px;
-    color: #2ecc71; /* Green accent color */
-    line-height: 1;
-}
-
-
-/* Progress Bar Styling */
-.progress-bar-container {
-    width: 90%;
-    height: 25px;
-    background-color: #e0e0e0;
-    border-radius: 12px;
-    margin: 20px auto 10px auto;
-    overflow: hidden;
-    border: 1px solid #ccc;
-}
-
-#progress-bar-fill {
-    width: 0%; /* Initial width */
-    height: 100%;
-    background-color: #1abc9c; /* Teal accent color */
-    border-radius: 10px; /* Match container's rounding, slightly less */
-    transition: width 0.4s ease-in-out;
-    text-align: center;
-    line-height: 25px;
-    color: white;
-    font-size: 0.8em;
-}
-
-#progress-label-text { /* Style for the X/Y text below bar */
-    text-align: center;
-    font-size: 0.9em;
-    color: #555;
-    margin-top: 5px; /* Space from bar */
-    margin-bottom: 15px; /* Space before next element */
-}
-
-
-/* Results Screen Specifics */
-.results-content {
-    padding: 15px;
-}
-
-.results-content h1 {
-    font-size: 2em;
-    margin-bottom: 15px; /* Adjusted for illustration */
-    color: #2c3e50;
-}
-
-.results-content h2 { /* Subheadings in results */
-    font-size: 1.6em;
-    color: #3498db;
-    border-bottom: 2px solid #e0e0e0;
-    padding-bottom: 10px;
-    margin-top: 30px;
-    text-align: left;
-    font-weight: 600;
-}
-
-
-#result-nome, #result-data {
-    font-style: italic;
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-size: 1.1em; /* Ensured legibility */
-}
-
-
-#result-temperamento-tipo {
-    font-size: 1.5em;
-    font-weight: 600;
-    color: #e74c3c;
-    padding: 10px;
-    background-color: #feefef;
-    border-radius: 8px;
-    text-align: center;
-    margin-bottom: 25px;
-    display: block;
-    margin-top: 10px;
-}
-
-.results-content p {
-    margin-bottom: 12px;
-    font-size: 1.2em;   /* Increased from 1.05em */
-    line-height: 1.6;   /* Maintained */
-    color: #333333;
-}
-
-.results-content strong {
-    color: #2c3e50;
-    font-weight: 600;
-}
-
-.temperament-description p {
-    font-size: 1em;
     line-height: 1.6;
-    margin-bottom: 10px;
 }
 
-.temperament-description strong {
-    font-weight: bold;
-}
-
-
-#fatores-complementares-results div {
-    margin-bottom: 15px;
-    padding: 12px;
-    font-size: 1.15em;  /* Increased from 1.05em */
-    border-bottom: 1px dashed #e0e0e0;
-    line-height: 1.5;
-}
-#fatores-complementares-results div:last-child {
-    border-bottom: none;
-}
-
-#fatores-complementares-results div strong {
-    color: #1abc9c;
-    font-weight: 500;
-}
-
-#fatores-complementares-results div small em {
-    font-size: 0.9em;  /* Slightly increased relative size */
-    color: #444;       /* Darker for better contrast */
-    display: block;
-    margin-top: 6px;
-    padding-left: 0;
-    line-height: 1.5;
-}
-
-
-.action-buttons {
+/* Header styling */
+header {
+    background-color: #004080; /* Dark blue */
+    color: #fff;
+    padding: 1rem 0;
     text-align: center;
-    margin-top: 35px;
-}
-
-/* Scrollable area example - not applied by default */
-.scrollable-area {
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #f9f9f9;
     margin-bottom: 20px;
 }
 
-.attribution-text {
-    font-size: 0.85em; /* Small but legible */
-    color: #555555;   /* Dark gray for readability */
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+/* Main content styling */
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Section styling */
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+section h2 {
+    margin-top: 0;
+    color: #004080;
+    border-bottom: 2px solid #004080;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Input field and label styling */
+div > label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="number"],
+input[type="date"] {
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important for width calculation */
+    font-size: 1rem;
+}
+
+input[type="number"]:focus,
+input[type="date"]:focus {
+    border-color: #004080;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 64, 128, 0.3);
+}
+
+/* Grouping input fields for better layout */
+section > div {
+    margin-bottom: 15px;
+}
+
+/* Button container and styling */
+#botoesAcao {
     text-align: center;
-    margin-top: 20px;    /* Space above */
-    margin-bottom: 20px; /* Space below */
-    line-height: 1.5;    /* For readability of two lines */
+    margin-bottom: 30px;
+    padding: 10px 0;
+}
+
+#botoesAcao button {
+    background-color: #0056b3; /* Slightly lighter blue */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#botoesAcao button:hover {
+    background-color: #004080; /* Darker blue on hover */
+}
+
+/* Table styling */
+#containerTabelaAmortizacao {
+    overflow-x: auto; /* For responsive tables on small screens */
+    margin-bottom: 30px;
+}
+
+#tabelaAmortizacao {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#tabelaAmortizacao th,
+#tabelaAmortizacao td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+#tabelaAmortizacao th {
+    background-color: #004080;
+    color: white;
+    font-weight: bold;
+}
+
+#tabelaAmortizacao tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#tabelaAmortizacao tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Summary display area styling */
+#resumoCalculo {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#resumoCalculo h2 {
+    margin-top: 0;
+    color: #004080;
+     border-bottom: 2px solid #004080;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#dadosResumo {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    white-space: pre-wrap; /* Allows text to wrap and respects newlines */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    main {
+        width: 95%;
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    #botoesAcao button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        display: block; /* Stack buttons on smaller screens */
+        width: calc(100% - 20px); /* Full width with margin */
+        margin: 10px auto;
+    }
+
+    input[type="number"],
+    input[type="date"] {
+        font-size: 0.95rem;
+    }
+
+    #tabelaAmortizacao th,
+    #tabelaAmortizacao td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Adjust base font size for very small screens */
+    }
+    header h1 {
+        font-size: 1.3rem;
+    }
+    section h2 {
+        font-size: 1.2rem;
+    }
 }

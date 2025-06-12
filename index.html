@@ -3,87 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionário de Temperamentos</title>
+    <title>Simulador de Amortização</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Initial Screen -->
-        <div id="initial-screen" class="screen active">
-            <h1>Questionário de Temperamentos</h1>
-            <div class="illustration-placeholder initial-illustration"></div>
-            <div class="instructions">
-                <h2>INSTRUÇÕES:</h2>
-                <ol>
-                    <li>Preencha seu nome completo antes de começar.</li>
-                    <li>Para cada pergunta, escolha uma das opções:
-                        <ul>
-                            <li>A - Se a afirmação corresponde ao seu modo natural de ser</li>
-                            <li>? - Se você está em dúvida ou parcialmente de acordo</li>
-                            <li>B - Se a afirmação não corresponde ao seu modo de ser</li>
-                        </ul>
-                    </li>
-                    <li>Responda com sinceridade, considerando seu modo natural de agir, não o ocasional ou desejado.</li>
-                    <li>Ao final, você receberá um relatório detalhado com seu perfil de temperamento.</li>
-                </ol>
+    <header>
+        <h1>Simulador de Amortização - DFA Defense LTDA</h1>
+    </header>
+    <main>
+        <section id="informacoesContratuais">
+            <h2>Informações Contratuais</h2>
+            <div>
+                <label for="valorPrincipal">Valor Principal (R$):</label>
+                <input type="number" id="valorPrincipal" name="valorPrincipal">
             </div>
-            <p class="attribution-text">
-                Este questionário foi baseado no livro 'O Conhecimento de Si Mesmo - Os 8 Temperamentos'.<br>
-                Autor: Padre Antonio Gonzáles, IVE (Instituto do Verbo Encarnado).
-            </p>
-            <div class="name-input">
-                <label for="nome">Nome completo:</label>
-                <input type="text" id="nome" name="nome">
+            <div>
+                <label for="dataInicio">Data Início:</label>
+                <input type="date" id="dataInicio" name="dataInicio">
             </div>
-            <button id="start-button">Iniciar Questionário</button>
+            <div>
+                <label for="taxaSpreadMensal">Taxa Spread Mensal (%):</label>
+                <input type="number" id="taxaSpreadMensal" name="taxaSpreadMensal" placeholder="0.0045">
+            </div>
+        </section>
+
+        <section id="parametrosProjecao">
+            <h2>Parâmetros de Projeção</h2>
+            <div>
+                <label for="taxaCdiMensalProjecao">Taxa CDI mensal para projeção (%):</label>
+                <input type="number" id="taxaCdiMensalProjecao" name="taxaCdiMensalProjecao" placeholder="0.90">
+            </div>
+        </section>
+
+        <div id="botoesAcao">
+            <button id="btnCalcularAmortizacao">Calcular Amortização</button>
+            <button id="btnExportarExcel">Exportar para Excel</button>
+            <button id="btnVisualizarResumo">Visualizar Resumo</button>
         </div>
 
-        <!-- Questionnaire Screen -->
-        <div id="questionnaire-screen" class="screen">
-            <h2 id="section-title"></h2>
-            <div class="illustration-placeholder section-illustration"></div>
-            <div id="current-section-questions-container">
-                <!-- Questions for the current section will be dynamically inserted here by JavaScript -->
-            </div>
-            <div class="navigation-buttons">
-                <button id="prev-section-button">← Seção Anterior</button>
-                <button id="next-section-button">Próxima Seção →</button>
-                <button id="finish-quiz-button" style="display:none;">Mostrar Resultados</button>
-            </div>
-            <div class="progress-bar-container">
-                <div id="progress-bar-fill"></div>
-            </div>
-            <p id="progress-label-text"></p>
+        <div id="containerTabelaAmortizacao">
+            <table id="tabelaAmortizacao">
+                <thead>
+                    <tr>
+                        <th>Parcela</th>
+                        <th>Vencimento</th>
+                        <th>% Amort.</th>
+                        <th>CDI (%)</th>
+                        <th>Taxa Total (%)</th>
+                        <th>Saldo Inicial</th>
+                        <th>Juros</th>
+                        <th>Amortização</th>
+                        <th>Parcela Total</th>
+                        <th>Saldo Final</th>
+                    </tr>
+                </thead>
+                <tbody id="corpoTabelaAmortizacao">
+                    <!-- Linhas da tabela serão inseridas aqui via JavaScript -->
+                </tbody>
+            </table>
         </div>
 
-        <!-- Results Screen -->
-        <div id="results-screen" class="screen">
-            <div class="results-content">
-                <div class="illustration-placeholder results-illustration"></div>
-                <h1>Resultados do Questionário</h1>
-                <p><strong>Nome:</strong> <span id="result-nome"></span></p>
-                <p><strong>Data:</strong> <span id="result-data"></span></p>
-
-                <h2>Temperamento Principal</h2>
-                <p>Seu temperamento é: <strong id="result-temperamento-tipo"></strong></p>
-
-                <h2>Pontuações Principais</h2>
-                <p>Emotividade: <span id="score-emotividade"></span></p>
-                <p>Atividade: <span id="score-atividade"></span></p>
-                <p>Ressonância: <span id="score-ressonancia"></span></p>
-
-                <h2>Fatores Complementares</h2>
-                <div id="fatores-complementares-results">
-                    <!-- Results will be populated by JavaScript -->
-                </div>
-                <div class="action-buttons">
-                    <button id="generate-pdf-button">Gerar PDF</button>
-                    <button id="complete-button">Concluir</button>
-                </div>
-            </div>
+        <div id="resumoCalculo">
+            <h2>Resumo do Cálculo</h2>
+            <pre id="dadosResumo">
+                <!-- Resumo será exibido aqui -->
+            </pre>
         </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
